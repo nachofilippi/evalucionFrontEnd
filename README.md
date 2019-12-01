@@ -1,13 +1,18 @@
-# evalucionFrontEnd
-Jobs - new user
+# vue-cli
 
-# Build Setup
-Instalado Vue.js https://vuejs.org/v2/guide/
+> A Vue.js project
 
-# instalar dependencias
+## Build Setup
+
+``` bash
+# install dependencies
 npm install
 
-# levantar el servidor en localhost:8080 para probar
+# serve with hot reload at localhost:8080
 npm run dev
 
-created by Ignacio Filippi
+# build for production with minification
+npm run build
+```
+
+For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
