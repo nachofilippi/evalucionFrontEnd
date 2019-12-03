@@ -20,6 +20,11 @@ const UserEdit = resolve => {
         resolve(require('./components/user/UserEdit.vue'))
     }, 'user')
 };
+const NewUser = resolve => {
+    require.ensure(['./components/user/NewUser.vue'], () => {
+        resolve(require('./components/user/NewUser.vue'))
+    }, 'user')
+};
 
 export const routes = [
     {path : '', name: '/user', components:{
@@ -32,8 +37,12 @@ export const routes = [
     }, children: [
         {path: '', component: UserStart },
         {path: ':id', component: UserDetail},
-        {path: ':id/edit', component: UserEdit , name: 'userEdit' },
-        
+        {
+            path: ':id/edit',
+            component: UserEdit,
+            name: 'userEdit'
+        },
+        {path: '/new', component: NewUser , name: 'newUser' },
     ] },
     { path: '/redirect-me', redirect:{name:'userEdit'} },
     { path: '*', redirect: '/'}
