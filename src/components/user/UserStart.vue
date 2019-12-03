@@ -94,7 +94,6 @@ export default {
                 this.pageNo -= 1;
                 console.log(this.pageNo);
                 console.log(this.userInformation.length);
-                // localStorage.setItem('userInformation', JSON.stringify(this.userInformation));
             }
         },
 
