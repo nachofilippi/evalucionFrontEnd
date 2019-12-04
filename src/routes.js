@@ -35,7 +35,7 @@ export const routes = [
         default: User,
         'header-bottom': Header
     }, children: [
-        {path: '', component: UserStart },
+        {path: 'userList', component: UserStart, name: 'userList' },
         {path: ':id', component: UserDetail},
         {
             path: ':id/edit',

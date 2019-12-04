@@ -88,6 +88,8 @@ export default {
     },
     created(){
         this.userInformation = JSON.parse(localStorage.getItem('userInformation'));
+        console.log(this.userInformation);
+        
     },
     methods: {
         prev() {
