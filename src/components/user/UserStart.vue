@@ -82,6 +82,7 @@ export default {
             linkNew:{ 
                 name:'newUser', 
             },
+            paginator: [],
             pageNo: 0,
             pageSize: 5,
             pageCount: 10
@@ -119,10 +120,28 @@ export default {
         },
 
         paginate() {
+            let count = 0;
+            let numberPage = 0;
             this.pageCount = Math.floor(this.userInformation.length / this.pageSize) +1;
-            this.userInformation.forEach((page,index) =>{
-
-            });
+            for (let index = 0; index < this.userInformation.length; index++) {
+                console.log(this.userInformation[index]);
+                if(count <= 3 && this.userInformation[index] != null){
+                    // if(count == 0) this.paginator.push(numberPage);                    
+                    this.paginator[numberPage].data.push(this.userInformation[index]);
+                    console.log(count);
+                    
+                    count ++;
+                } else {
+                    if(count > 3){
+                        count = 0;
+                        numberPage++;
+                        console.log(this.userInformation);
+                        
+                    }
+                }
+            }
+            console.log(this.paginator);
+            
         },
 
         goToPage(page){
