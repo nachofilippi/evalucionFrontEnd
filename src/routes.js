@@ -27,22 +27,21 @@ const NewUser = resolve => {
 };
 
 export const routes = [
-    {path : '', name: '/user', components:{
-        default: User,
+    {path : '', name: '/userList', components:{
+        default: UserStart,
         'header-bottom': Header
     } }, 
-    {path : '/user', components:{
-        default: User,
+    {path: '/new', component: NewUser , name: 'newUser' },
+    {path : '/userList', components:{
+        default: UserStart,
         'header-bottom': Header
     }, children: [
-        {path: 'userList', component: UserStart, name: 'userList' },
         {path: ':id', component: UserDetail},
         {
             path: ':id/edit',
             component: UserEdit,
             name: 'userEdit'
         },
-        {path: '/new', component: NewUser , name: 'newUser' },
     ] },
     { path: '/redirect-me', redirect:{name:'userEdit'} },
     { path: '*', redirect: '/'}

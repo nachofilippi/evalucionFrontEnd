@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card border-secondary mb-3">
-                    <div class="card-header">Listado de usuario activos</div>
+                    <div class="card-header bg-dark border-bottom"><h3 class="text-light ">Listado de usuario activos</h3></div>
                     <div class="card-body">
                         <table class="table table-hover">
                             <thead>
@@ -23,7 +23,7 @@
                                         <a href="#">
                                             <span class="glyphicon glyphicon-edit mr-2"></span>
                                         </a>
-                                        <a href="#">
+                                        <a @click="deleteUser(info.id)">
                                             <span class="glyphicon glyphicon-trash text-danger"></span>
                                         </a>
                                     </td>
@@ -42,9 +42,7 @@
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
                                     <li class="page-item"><a class="page-link" @click="prev">Previous</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li v-for="page in pageCount" :key="page" class="page-item"><a class="page-link" @click="goToPage(page)">{{page}}</a></li>
                                     <li class="page-item"><a class="page-link" @click="next">Next</a></li>
                                 </ul>
                             </nav>
@@ -52,7 +50,7 @@
                         <hr>
                         <div class="d-flex justify-content-end ">
                             <router-link class="btn btn-info" data-toggle="tooltip" data-placement="top"
-                                title="Usted podrá cargar un nuevo usuario a la lista" :to="{ name: 'newUser'}">
+                                title="Usted podrá cargar un nuevo usuario a la lista" :to="linkNew">
                                 Cargar Usuario
                             </router-link>
                         </div>
@@ -81,15 +79,17 @@ export default {
                 params: { id: this.$route.params.id }, 
                 hash: '#data'
             },
-            pageNo: 1,
-            pageSize: 10,
-            pageCount: 0
+            linkNew:{ 
+                name:'newUser', 
+            },
+            pageNo: 0,
+            pageSize: 5,
+            pageCount: 10
         }
     },
     created(){
         this.userInformation = JSON.parse(localStorage.getItem('userInformation'));
-        console.log(this.userInformation);
-        
+        this.paginate();
     },
     methods: {
         prev() {
@@ -107,6 +107,27 @@ export default {
                 console.log(user);
                 
             }
+        },
+
+        deleteUser(id){
+            this.userInformation.forEach((user, index) => {
+                if(user.id == id){
+                    this.userInformation.splice(index,1);
+                    localStorage.setItem('userInformation', JSON.stringify(this.userInformation));
+                }
+            });
+        },
+
+        paginate() {
+            this.pageCount = Math.floor(this.userInformation.length / this.pageSize) +1;
+            this.userInformation.forEach((page,index) =>{
+
+            });
+        },
+
+        goToPage(page){
+            console.log(page);
+            
         }
     }
 }

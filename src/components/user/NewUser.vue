@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-12">
       <div class="card border-secondary mb-3">
-        <div class="card-header">Creación de nuevo usuario</div>
+        <div class="card-header bg-dark border-bottom"><h3 class="text-light ">Creación de nuevo usuario</h3></div>
         <div class="card-body">
           <h4>Nombre</h4>
           <input type="text" class="form-control" v-model="user.name" placeholder="Joaquin" aria-label="Username"
@@ -11,9 +11,9 @@
           <input v-model="user.date" type="date" name="dateofbirth" id="dateofbirth">
           <h4>Fecha de nacimiento</h4>
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-danger" @click="user.gender = 'Femenino'">
+            <label class="btn btn-outline-danger buttons" @click="user.gender = 'Femenino'">
               <input type="radio" name="options" v-model="user.gender" autocomplete="off">Femenino </label>
-            <label class="btn btn-primary" @click="user.gender = 'Masculino'">
+            <label class="btn btn-outline-primary buttons" @click="user.gender = 'Masculino'">
               <input type="radio" name="options" v-model="user.gender" autocomplete="off">Masculino </label>
           </div>
           <h4>Email</h4>
@@ -21,9 +21,9 @@
             aria-label="Email" aria-describedby="basic-addon1">
           <hr>
           <div class="d-flex justify-content-end">
-            <router-link tag="button" type="button" class="btn btn-btn btn-outline-secondary cancel" :to="link">CANCELAR
+            <router-link tag="button" type="button" class="btn btn-outline-secondary buttons mr-2" :to="link">CANCELAR
             </router-link>
-            <button tag="button" type="button" class="btn btn-success" @click="save">GUARDAR</button>
+            <button tag="button" type="button" class="btn btn-outline-success buttons" @click="save">GUARDAR</button>
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@ export default {
   data() {
     return {
       link: {
-        name: '/user',
+        name: '/userList',
       },
       userInformation: [],
       user: [{
@@ -64,6 +64,7 @@ export default {
     this.userInformation = JSON.parse(localStorage.getItem('userInformation'));
   },
   methods: {
+    // create a new user
     save() {
       this.userInformation = JSON.parse(localStorage.getItem('userInformation'));
       // difference between today and user's birthday than gives me the age
@@ -89,7 +90,7 @@ export default {
       let id = parseInt(Math.random() * 10000);
       // validate over age and break and show swal
       if(age < 18){
-        this.errorSwal('una edad inválida');
+        this.errorSwal('una edad menor a 18 años');
         return 0;
       }
       // regex email validation break and show swal
@@ -141,7 +142,7 @@ export default {
         text: `ID: ${msg}`,
         confirmButtonText: 'OK'
       }).then((result) => {
-        this.$router.push({ name: "userList" });
+        this.$router.push({ name: "/userList" });
       })
     }
   }
