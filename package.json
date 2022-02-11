@@ -26,7 +26,7 @@
     "css-loader": "^0.25.0",
     "file-loader": "^0.9.0",
     "mutationobserver-shim": "^0.3.3",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "popper.js": "^1.15.0",
     "portal-vue": "^2.1.4",
     "sass-loader": "^8.0.0",
